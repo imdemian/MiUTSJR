@@ -9,6 +9,7 @@ ruta.get("/", autorizado, async(req, res)=> {
     res.render("usuarios/mostrar", {usuarios});
 });
 
+
 ruta.get("/nuevoUsuario", (req, res) => {
     res.render("Usuarios/nuevo");
 })
