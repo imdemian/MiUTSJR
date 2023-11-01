@@ -1,6 +1,6 @@
 var multer = require("multer");
 
-function subirArchivo(){
+function subirArchivoU(){
     var storage=multer.diskStorage({
         destination: './web/Usuarios/images',
         filename: (req,file,cb)=>{
@@ -11,6 +11,8 @@ function subirArchivo(){
     return multer({storage}).single('foto');
 }
 
+
+
 module.exports={
-    subirArchivo
+    subirArchivoU
 }

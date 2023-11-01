@@ -1,8 +1,8 @@
 var crypto = require("crypto");
 
 function generarPassword(password){
-    var salt = crypto.randomBytes(32).toString("hex");
-    var hash = crypto.scryptSync(password,salt,100000,64,'sha512').toString("hex");
+    var salt = crypto.randomBytes(32).toString("hex"); // entrega una cadena de 64 caracteres
+    var hash = crypto.scryptSync(password,salt,100000,64,'sha512').toString("hex");//entrega el password
 return {
     salt,
     hash
