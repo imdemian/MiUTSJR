@@ -2,7 +2,7 @@ var express = require("express");
 var path = require("path");
 var cors = require("cors");
 var session = require("cookie-session");
-var usuariosRutas = require("./rutas/usuariosRutas");
+var usuariosRutas = require("./routes/usuariosRutas");
 
 var app = express();
 app.set("view engine", "ejs");
