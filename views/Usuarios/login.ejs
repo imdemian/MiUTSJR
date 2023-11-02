@@ -6,7 +6,6 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="web/css/style_login.css" rel="stylesheet">
 </head>
 <body>
   <div class="container" id="container">
@@ -25,6 +24,9 @@
       <form action="/login" method="POST">
         <img src="assets/images/huawei.svg" alt="" style="height: 15%; ">
         <h1>Hello Again!</h1>
+        <div class="login-image">
+          <img src="/Usuarios/images/perfil.png" class="imagen-redonda" alt="Imagen Redonda"> 
+        </div>
         <input  type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus>
         <input  type="password" name="password" id="password" placeholder="Password" autofocus>
         <div class="content">
@@ -74,24 +76,8 @@
     </div>
 
   </div>
-
-
 </body>
 </html>
 
-<div class="login-container">
-
-  <div class="login-image">
-    <img src="../assets/perfilVacio.jpg" alt="perfil vacio" srcset="">
-  </div>
-  <h2>Iniciar sesión</h2>
-  <form action="/login" method="post">
-    <input  type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus>
-    <input  type="password" name="password" id="password" placeholder="Password" autofocus>
-    <button type="submit">Entrar</button>
-    <a href="/nuevousuario">Registrarse</a>
-
-  </form>
-</div>
 
 <%- include("../templates/footer")%>
