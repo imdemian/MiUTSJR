@@ -1,11 +1,19 @@
+<%- include("../templates/header")%>
+
+
 <div class="login-container">
-    <div class="login-image">
-        <img src="../assets/perfilVacio.jpg" alt="perfil vacio" srcset="">
-    </div>
-    <h2>Iniciar Sesión</h2>
-    <form action="tu_script_de_autenticacion.php" method="post">
-        <input type="text" name="usuario" placeholder="Usuario" required>
-        <input type="password" name="contrasena" placeholder="Contraseña" required>
-        <input type="submit" value="Iniciar Sesión">
-    </form>
+
+  <div class="login-image">
+    <img src="../assets/perfilVacio.jpg" alt="perfil vacio" srcset="">
+  </div>
+  <h2>Iniciar sesión</h2>
+  <form action="/login" method="post">
+    <input  type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus>
+    <input  type="password" name="password" id="password" placeholder="Password" autofocus>
+    <button type="submit">Entrar</button>
+    <a href="/nuevousuario">Registrarse</a>
+
+  </form>
 </div>
+
+<%- include("../templates/footer")%>
