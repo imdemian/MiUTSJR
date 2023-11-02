@@ -10,8 +10,6 @@ async function mostrarUsuarios() {
     usuarios.forEach((usuario) => {
         var usuario1 = new Usuario(usuario.id, usuario.data()); 
         if(usuario1.bandera == 0) {
-           //console.log("jsdogjsodfjgoisdjfgoisjfdoijs");
-           //console.log(usuario1.obtenerUsuario);
            users.push(usuario1.obtenerUsuario);
         }
     });
