@@ -1,8 +1,8 @@
 var ruta = require("express").Router();
 var {subirArchivoU} = require("../middlewares/middlewares");
 var {autorizado} = require("../middlewares/password");
-var {mostrarUsuarios, nuevoUsuario, buscarPorID, modificarUsuario, borrarUsuario, login} = require("../bd/usuariosBD");
-const Usuario = require("../modelos/usuario");
+var {mostrarUsuarios, nuevoUsuario, buscarPorID, modificarUsuario, borrarUsuario, login} = require("../db/usuariosBD");
+const Usuario = require("../models/usuario");
 
 ruta.get("/", autorizado, async(req, res)=> {
     var usuarios = await mostrarUsuarios();

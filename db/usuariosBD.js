@@ -1,5 +1,5 @@
 const { generarPassword, validarPassword} = require("../middlewares/password");
-var Usuario = require("../modelos/usuario");
+var Usuario = require("../models/usuario");
 var fs = require ('fs').promises;
 const { conexion} = require("./conexion"); 
 
