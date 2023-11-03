@@ -5,7 +5,7 @@
 }
 
 body {
-  background:rgb(248, 245, 245);
+  background-image: url("../assets/fondoTech2.jpg");
   display: flex;
   justify-content: center;
   align-items: center;
