@@ -1,19 +1,20 @@
 var ruta = require("express").Router();
-var {subirArchivo} = require("../middlewares/middlewares");
+var {subirArchivoU} = require("../middlewares/middlewares");
 var {autorizado} = require("../middlewares/password");
-var {mostrarUsuarios, nuevoUsuario, buscarPorID, modificarUsuario, borrarUsuario, login} = require("../bd/usuariosBD");
-const Usuario = require("../modelos/usuario");
+var {mostrarUsuarios, nuevoUsuario, buscarPorID, modificarUsuario, borrarUsuario, login} = require("../db/usuariosBD");
+const Usuario = require("../models/usuario");
 
 ruta.get("/", autorizado, async(req, res)=> {
     var usuarios = await mostrarUsuarios();
-    res.render("usuarios/mostrar", {usuarios});
+    res.render("usuarios/login", {usuarios});
 });
+
 
 ruta.get("/nuevoUsuario", (req, res) => {
     res.render("Usuarios/nuevo");
 })
 
-ruta.post("/nuevoUsuario",subirArchivo(), async (req, res) => {
+ruta.post("/nuevoUsuario",subirArchivoU(), async (req, res) => {
     req.body.foto = req.file.filename;
     var error = await nuevoUsuario(req.body);
      res.redirect("/");
@@ -31,14 +32,18 @@ ruta.post("/login",async(req,res)=>{
        if(user.admin){
           console.log("Administrador");
           req.session.admin=req.body.usuario;
-          res.redirect("/producto/nuevoproducto");
+          res.redirect("/inicio");
        }else{
           console.log("usuario");
           req.session.usuario=req.body.nombre;
-          res.redirect("/");
+          res.redirect("/inicio");
        }
     }
  });
+
+ ruta.get("/inicio", (req, res) => {
+    res.render("inicio/inicio"); 
+});
  
  ruta.get("/logout",(req,res)=>{
     req.session=null;
@@ -50,7 +55,7 @@ ruta.get("/editarUsuario/:id", async (req, res) => {
     res.render("usuarios/modificar", {user});
 } );
 
-ruta.post("/editarUsuario",subirArchivo(), async (req, res) => {
+ruta.post("/editarUsuario",subirArchivoU(), async (req, res) => {
    if(req.file!=null){
     req.body.foto = req.filename;
    }

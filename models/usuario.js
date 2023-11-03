@@ -3,7 +3,7 @@ class Usuario {
         this.bandera = 0;
         this.id=id;
         this.nombre=data.nombre;
-        this.expediente=data.expediente;
+        this.usuario=data.usuario;
         this.password=data.password;
         this.salt=data.salt;
         this.foto=data.foto;
@@ -16,8 +16,8 @@ class Usuario {
     set nombre(nombre) {
         nombre.length>0?this._nombre = nombre:this.bandera=1;
     }
-    set expediente(expediente) {
-        expediente.length>0?this._expediente = expediente:this.bandera=1;
+    set usuario(usuario) {
+        usuario.length>0?this._usuario = usuario:this.bandera=1;
     }
     set password(password) {
         password.length>0?this._password = password:this.bandera=1;
@@ -38,7 +38,7 @@ class Usuario {
         return this._nombre;
     }
     get usuario() {
-        return this._expediente;
+        return this._usuario;
     }
     get password() {
         return this._password;
@@ -56,7 +56,7 @@ class Usuario {
         if(this._id==null){
             return {
                 nombre:this.nombre,
-                expediente:this.expediente,
+                usuario:this.usuario,
                 password:this.password,
                 salt:this.salt,
                 foto:this.foto,
@@ -67,7 +67,7 @@ class Usuario {
             return {
                 id: this.id,
                 nombre: this.nombre,
-                expediente: this.expediente,
+                usuario: this.usuario,
                 password: this.password,
                 salt: this.salt,
                 foto: this.foto,
