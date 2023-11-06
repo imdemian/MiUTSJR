@@ -21,7 +21,7 @@ ruta.post("/nuevoUsuario",subirArchivoU(), async (req, res) => {
 });
 
 ruta.get("/login",(req,res)=>{
-    res.render("usuarios/login")
+    res.render("Usuarios/login")
 });
 
 ruta.post("/login",async(req,res)=>{
@@ -52,7 +52,7 @@ ruta.post("/login",async(req,res)=>{
 
 ruta.get("/editarUsuario/:id", async (req, res) => {
     var user = await buscarPorID(req.params.id);
-    res.render("usuarios/modificar", {user});
+    res.render("Usuarios/modificar", {user});
 } );
 
 ruta.post("/editarUsuario",subirArchivoU(), async (req, res) => {
