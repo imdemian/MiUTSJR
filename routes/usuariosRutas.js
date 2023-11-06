@@ -6,7 +6,7 @@ const Usuario = require("../models/usuario");
 
 ruta.get("/", autorizado, async(req, res)=> {
     var usuarios = await mostrarUsuarios();
-    res.render("usuarios/login", {usuarios});
+    res.render("Usuarios/login", {usuarios});
 });
 
 
