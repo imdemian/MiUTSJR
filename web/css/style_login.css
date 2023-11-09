@@ -323,3 +323,26 @@ input {
   overflow: hidden; 
 
 }
+.foro-de-discusión-utsjr {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #000000;
+}
+
+.flabel {
+  position: relative;
+  bottom: 10px;
+}
+.fo {
+  text-align: center;
+}
+
+.fgroup {
+  margin-bottom: 20px;
+}
+
+.ffield {
+  width: 100%;
+  height: 100px;
+}

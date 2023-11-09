@@ -9,7 +9,6 @@ ruta.get("/", autorizado, async(req, res)=> {
     res.render("usuarios/login", {usuarios});
 });
 
-
 ruta.get("/nuevoUsuario", (req, res) => {
     res.render("Usuarios/nuevo");
 })
@@ -73,6 +72,10 @@ ruta.get("/borrarUsuario/:id", async (req, res) => {
     } catch (err) {
         console.log("Error al borrar el usuario " + err);
     }
+});
+
+ruta.get("/foro", (req, res) => {
+	res.render("inicio/foro");
 });
 
 module.exports = ruta;
