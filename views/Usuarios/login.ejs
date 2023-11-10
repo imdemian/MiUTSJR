@@ -1,81 +1,82 @@
-<%- include("../templates/header")%>  
-<!doctype html>
-<html lang="en">
-<head>
-  <title>UTSJR</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-</head>
-<body>
-  <div class="container" id="container">
-    <div class="form-container register-container">
-      <form action="/nuevousuario" method="POST">
-        <h1>Create an account</h1>
-        <input  type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus>
-        <input  type="password" name="password" id="password" placeholder="Password" autofocus>
-        <button>Register</button>
-      </form>
-    </div>
+<%- include("../templates/header")%>
+  <!doctype html>
+  <html lang="en">
 
-<!--LOGIN-->
-    <div class="form-container login-container">
-      <form action="/login" method="POST">
-        <h1>Hello Again!</h1>
-        <div class="login-image">
-          <img src="/Usuarios/images/perfil.png" class="imagen-redonda" alt="Imagen Redonda"> 
-        </div>
-        <input  type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus>
-        <input  type="password" name="password" id="password" placeholder="Password" autofocus>
-        <div class="content">
+  <head>
+    <title>UTSJR</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+
+  <body>
+    <div class="container" id="container">
+      <div class="form-container register-container">
+        <form action="/nuevousuario" method="POST">
+          <h1>Create an account</h1>
+          <input type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus>
+          <input type="password" name="password" id="password" placeholder="Password" autofocus>
+          <button>Register</button>
+        </form>
+      </div>
+
+      <!--LOGIN-->
+      <div class="form-container login-container">
+        <form action="/login" method="POST">
+          <h1>Hello Again!</h1>
+          <div class="login-image">
+            <img src="/Usuarios/images/perfil.png" class="imagen-redonda" alt="Imagen Redonda">
+          </div>
+          <input type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus>
+          <input type="password" name="password" id="password" placeholder="Password" autofocus>
+          <div class="content">
             <!--
           <div class="checkbox">
             <input type="checkbox" name="checkbox" id="checkbox">
             <label>Remember me</label>
           </div>
           -->
-          <div class="pass-link">
-            <a href="#">Forgot password?</a>
+            <div class="pass-link">
+              <a href="#">Forgot password?</a>
+            </div>
           </div>
-        </div>
-        <button>Login</button>
-        <!--<span>or use your account</span>
+          <button>Login</button>
+          <!--<span>or use your account</span>
         <div class="social-container">
           <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
           <a href="#" class="social"><i class="lni lni-google"></i></a>
           <a href="#" class="social"><i class="lni lni-linkedin-original"></i></a>
         </div>-->
-      </form>
-    </div>
+        </form>
+      </div>
 
-    <!--Overlay Login-->
-    <div class="overlay-container">
-      <div class="overlay">
-        <div class="overlay-panel overlay-left">
-          <h1 class="title">Hello <br> friends</h1>
-          <p>if You have an account, login here and have fun</p>
-          <button class="ghost" id="login">Login
-            <i class="lni lni-arrow-left login"></i>
-          </button>
-        </div>
+      <!--Overlay Login-->
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1 class="title">Hello <br> friends</h1>
+            <p>if You have an account, login here and have fun</p>
+            <button class="ghost" id="login">Login
+              <i class="lni lni-arrow-left login"></i>
+            </button>
+          </div>
 
-        <!--Overlay Register-->
-        <div class="overlay-panel overlay-right">
-          <h1 class="title">Are you <br> new here?</h1>
-          <p>Create an account and be part of the UTSJR community</p>
-          <button class="ghost" id="register">
-            <div class="pass-link">
-              <a href="/nuevousuario">Registrarse</a>
-            </div>
-            <i class="lni lni-arrow-right register"></i>
-          </button>
+          <!--Overlay Register-->
+          <div class="overlay-panel overlay-right">
+            <h1 class="title">Are you <br> new here?</h1>
+            <p>Create an account and be part of the UTSJR community</p>
+            <button class="ghost" id="register">
+              <div class="pass-link">
+                <a href="/nuevousuario">Register>
+              </div>
+              <i class="lni lni-arrow-right register"></i>
+            </button>
+          </div>
         </div>
       </div>
+
     </div>
+  </body>
 
-  </div>
-</body>
-</html>
-
-
-<%- include("../templates/footer")%>
+  </html>
+  <%- include("../templates/footer")%>

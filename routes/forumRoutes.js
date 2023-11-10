@@ -1,20 +1,33 @@
-var ruta = require("express").Router();
-const post = require("../models/post");
+const express = require("express");
+const router = express.Router();
+const Post = require("../models/post");
+const { firebaseDatabase } = require("../db/forumBd");
 
-ruta.post("/newPost", async (req, res) => {
-	try {
-		if (!title || !content || !rating) {
-			return res.redirect("/foro"); 
-		}
-		const post = await Post.create({ title, content, rating });
-		res.redirect("/discussions");
-	} catch (error) {
-		console.error("Error creating post:", error);
-		res.status(500).json({ error: "Failed to create post" });
-	}
+router.post("/newPost", async (req, res) => {
+    try {
+        const { title, content, rating } = req.body;
+        // const userId = req.session.usuario.id; 
+
+        if (!title || !content || !rating) {
+            return res.redirect("/foro");
+        }
+        const newPost = new Post(null, {
+            
+            title: title,
+            content: content,
+            rating: rating,
+        });
+
+        await firebaseDatabase.collection("posts").add(newPost.obtenerPost);
+
+        res.redirect("/discussions");
+    } catch (error) {
+        console.error("Error creating post:", error);
+        res.status(500).json({ error: "Failed to create post" });
+    }
 });
 
-ruta.get("/discussions", async (req, res) => {
+router.get("/discussions", async (req, res) => {
 	try {
 		const posts = await Post.findAll();
 		console.log(posts);
@@ -24,5 +37,7 @@ ruta.get("/discussions", async (req, res) => {
 		res.redirect("/error");
 	}
 });
+
+
 
 module.exports = router;
