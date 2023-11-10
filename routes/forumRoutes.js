@@ -3,6 +3,7 @@ const router = express.Router();
 const Post = require("../models/post");
 const { firebaseDatabase } = require("../db/forumBd");
 
+
 router.post("/newPost", async (req, res) => {
     try {
         const { title, content, rating } = req.body;
