@@ -40,8 +40,14 @@ ruta.post("/login",async(req,res)=>{
     }
  });
 
+//Rutas de la nabvar
+
  ruta.get("/inicio", (req, res) => {
     res.render("inicio/inicio"); 
+});
+
+ruta.get("/perfil", (req, res) => {
+    res.render("inicio/perfil"); 
 });
  
  ruta.get("/logout",(req,res)=>{
