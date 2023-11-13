@@ -69,7 +69,17 @@ ruta.post("/editarUsuario",subirArchivoU(), async (req, res) => {
    }
     var error = await modificarUsuario(req.body);
     res.redirect("/");
-})
+});
+
+ruta.post("/editarUsuario", subirArchivoU(), async (req, res) => {
+    if (req.file != null) {
+        req.body.foto = req.filename;
+    } else {
+        req.body.foto = req.body.fotoAnterior;
+    }
+    var error = await modificarUsuario(req.body);
+    res.redirect("/");
+});
 
 ruta.get("/borrarUsuario/:id", async (req, res) => {
     try {
@@ -83,5 +93,6 @@ ruta.get("/borrarUsuario/:id", async (req, res) => {
 ruta.get("/foro", (req, res) => {
 	res.render("inicio/foro");
 });
+
 
 module.exports = ruta;
