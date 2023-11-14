@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/post");
+var {autorizado} = require("../middlewares/password");
 const { firebaseDatabase } = require("../db/forumBd");
 // const { admin } = require("../middlewares/password");
 
@@ -39,48 +40,19 @@ router.get("/discussions", async (req, res) => {
 	}
 });
 
-router.post("/eliminar-discusion/:id", async (req, res) => {
-    // Obtener el ID de la discusión de los parámetros de la URL
-    const idDiscusion = req.params.id;
-
+router.post("/eliminarPost/:id",async (req, res) => {
     try {
-        // Realizar la lógica de eliminación de la discusión utilizando el ID
-        await Post.destroy({
-            where: { id_po: idDiscusion }
-        });
-
-        // Redireccionar a la página de discusiones después de eliminar
-        res.redirect("/discussions");
-    } catch (error) {
-        console.error("Error al eliminar la discusión:", error);
-        res.redirect("/error");
-    }
-});
-
-
-router.post("/eliminar-discusion/:id", async (req, res) => {
-    // Obtener el ID de la discusión de los parámetros de la URL
-    const idDiscusion = req.params.id;
-
-    try {
-        // Realizar la lógica de eliminación de la discusión utilizando el ID
-        const deletedRows = await Post.destroy({
-            where: { id_po: idDiscusion }
-        });
-
-        if (deletedRows > 0) {
-            console.log(`Discusión con ID ${idDiscusion} eliminada correctamente`);
-        } else {
-            console.log(`Discusión con ID ${idDiscusion} no encontrada`);
+        const postId = req.params.id;
+        const post = await firebaseDatabase.collection("posts").doc(postId).get();
+        if (!post.exists) {
+            return res.status(404).json({ error: "Post not found" });
         }
-
-        // Redireccionar a la página de discusiones después de eliminar
+        await firebaseDatabase.collection("posts").doc(postId).delete();
         res.redirect("/discussions");
     } catch (error) {
-        console.error("Error al eliminar la discusión:", error);
+        console.error("Failed to delete post", error);
         res.redirect("/error");
     }
 });
-
 
 module.exports = router;

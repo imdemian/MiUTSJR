@@ -41,7 +41,9 @@ ruta.post("/login",async(req,res)=>{
  });
 
  ruta.get("/inicio", (req, res) => {
-    res.render("inicio/inicio"); 
+    res.render("inicio/inicio",{
+        usuario: usuario.nombre
+    }); 
 });
  
  ruta.get("/logout",(req,res)=>{

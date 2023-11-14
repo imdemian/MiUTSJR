@@ -22,6 +22,7 @@ function autorizado(req,res,siguiente){
     }else{
         res.redirect("/login");
     } 
+    
 }
 
 function admin(req,res,siguiente){
