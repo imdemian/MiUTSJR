@@ -31,7 +31,7 @@ ruta.post("/login",async(req,res)=>{
        if(user.admin){
           console.log("Administrador");
           req.session.admin=req.body.usuario;
-          res.redirect("/inicio");
+          res.redirect("/inicio/true");
        }else{
           console.log("usuario");
           req.session.usuario=req.body.nombre;
@@ -41,9 +41,12 @@ ruta.post("/login",async(req,res)=>{
  });
 
  ruta.get("/inicio", (req, res) => {
-    res.render("inicio/inicio",{
-        // usuario: usuario.nombre
-    }); 
+    res.render("inicio/inicio"); 
+});
+
+ruta.get("/inicio/:isAdmin", (req, res) => {
+    req.session.isAdmin=req.params.isAdmin;
+    res.render("inicio/inicio"); 
 });
  
  ruta.get("/logout",(req,res)=>{

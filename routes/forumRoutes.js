@@ -32,15 +32,15 @@ router.post("/newPost", async (req, res) => {
 router.get("/discussions", async (req, res) => {
 	try {
 		const posts = await Post.findAll();
-		// console.log(posts);
-		res.render("discussions", { posts });
+		//console.log(req.session.isAdmin);
+		res.render("discussions", { posts,isAdmin:req.session.isAdmin });
 	} catch (error) {
 		console.error("Error al obtener los posts:", error);
 		res.redirect("/error");
 	}
 });
 
-router.post("/eliminarPost/:id",async (req, res) => {
+router.post("/eliminarPost/:id",autorizado,async (req, res) => {
     try {
         const postId = req.params.id;
         const post = await firebaseDatabase.collection("posts").doc(postId).get();
