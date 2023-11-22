@@ -20,6 +20,25 @@ async function mostrarUsuarios() {
     return users;
 }
 
+
+async function buscarPerfil(id) {
+    var usuarios;
+    try {
+        var usuarioBD = await conexion.doc(id).get();
+        
+        var usuarioObjeto = new Usuario(usuarioBD.id,usuarioBD.data());
+            if (usuarioObjeto.bandera==0) {
+
+            usuarios = usuarioObjeto.obtenerUsuario;
+
+        }
+    } catch (err) {
+        console.log("Error al buscar el usuario " + err);
+        usuarios = null;
+    }
+    return usuarios;
+}
+
 async function buscarPorID(id) {
     var user;
     try {
@@ -77,7 +96,7 @@ async function modificarUsuario(datos) {
                 console.log("Usuario actualizado correctamente");
                 error = 0;
             } catch (err) {
-                console.log("Error al modificar el usaurio " + err);
+                console.log("Error al modificar el usuario " + err);
             }
         }
         else {
@@ -137,5 +156,6 @@ module.exports={
     nuevoUsuario,
     modificarUsuario,
     borrarUsuario,
-    login
+    login,
+    buscarPerfil
 }

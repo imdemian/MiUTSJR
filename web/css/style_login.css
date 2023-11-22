@@ -7,6 +7,7 @@
 body {
   margin-top: 40px;
   background-image: url("../assets/fondoTech2.jpeg");
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -358,3 +359,85 @@ input {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/*-----------------------------------*\
+  #PERFIL
+\*-----------------------------------*/
+
+.button-perfil {
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid #00a788;
+  background-color: #00a788 ;
+  ;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 10px;
+  padding: 12px 80px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  transition: 0.3s ease-in-out;
+}
+
+.button-perfil:hover {
+  letter-spacing: 3px;
+}
+
+.button-perfil:active {
+  transform: scale(0.95);
+}
+
+.button-perfil:focus {
+  outline: none;
+}
+
+.button-perfil.ghost {
+  background-color: rgba(225, 225, 225, 0.2);
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.button-perfil.ghost i{
+  position: absolute;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.button-perfil.ghost i.register{
+  right: 70px;
+}
+
+.button-perfil.ghost i.login{
+  left: 70px;
+}
+
+.button-perfil.ghost:hover i.register{
+  right: 40px;
+  opacity: 1;
+}
+
+.button-perfil.ghost:hover i.login{
+  left: 40px;
+  opacity: 1;
+}
+
+.container-perfil {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+  border-radius: 5%;
+}
+
+.input-perfil {
+  background-color: #eee;
+  border-radius: 10px;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}

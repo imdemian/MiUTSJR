@@ -1,13 +1,30 @@
-<link href="/css/style.css" rel="stylesheet">
-<body id="top">
+<%- include("../templates/header")%>
 
-    <!-- 
-      - #HEADER
-    -->
+<div class="container-perfil">
   
-    <header class="header" data-header>
-      <div class="container">
-  
-        <a href="#">
-          <h1 class="logo">MI UTSJR</h1>
-        </a>
+        <div class="card">
+            <div class="card-header">
+                <h1>Mi Perfil</h1>
+            </div>
+            <div class="card-body">
+              <div class="login-image">
+                <img src="/Usuarios/images/perfil.png" class="imagen-redonda" alt="Imagen Redonda">
+              </div>
+                <input class="input-perfil" type="hidden" name="id" id="id" value="<%= usuarios.id %>">
+                <input class="input-perfil" type="hidden" name="fotoAnterior" id="fotoAnterior" value="<%= usuarios.foto %>">
+                <input class="input-perfil" type="text"name="nombre" id="nombre" value="<%= usuarios.nombre %>" readonly>
+                <input class="input-perfil" type="text"name="usuario" id="usuario" value="<%= usuarios.usuario%>" readonly> 
+                <input class="input-perfil" type="password"name="password" id="password" value="*******"  readonly >
+            <div class="form-control mb-3">
+    
+            </div>
+            </div> 
+            <div class="card-footer">
+              <br>  
+            <a class="button-perfil" href="/editarUsuario/<%= usuarios.id %>">Editar usuario</a>
+            </div>
+        </div>
+        </div>
+</div>
+
+<%- include("../templates/footer")%>
