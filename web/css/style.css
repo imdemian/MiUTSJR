@@ -305,7 +305,9 @@ body {
 .hero-banner {
   width: 150px;
   height: 172px;
-  background-color: var(--independence);
+  background-image: url("../assets/ut.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: var(--radius-10);
   margin-inline: auto;
   margin-block-end: 30px;

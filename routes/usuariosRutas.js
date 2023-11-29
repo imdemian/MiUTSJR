@@ -32,6 +32,7 @@ ruta.post("/login",async(req,res)=>{
           console.log("Administrador");
           //console.log(user);
           req.session.admin=req.body.usuario;
+          req.session.foto = user.foto;
           res.redirect("/inicio");
        }else{
           console.log("usuario");
@@ -53,7 +54,8 @@ ruta.get("/perfil", async (req, res) => {
     console.log("id ---------------");
     console.log(req.session.id);
     usuarios= await buscarPerfil(req.session.id)
-    res.render("inicio/perfil",{usuarios}); 
+    foto = req.session.foto
+    res.render("inicio/perfil",{usuarios,foto}); 
 });
  
  ruta.get("/logout",(req,res)=>{
@@ -95,7 +97,7 @@ ruta.post("/editarUsuario", subirArchivoU(), async (req, res) => {
 ruta.get("/borrarUsuario/:id", async (req, res) => {
     try {
         await borrarUsuario(req.params.id);
-        res.redirect("/");
+        res.redirect("/inicio");
     } catch (err) {
         console.log("Error al borrar el usuario " + err);
     }

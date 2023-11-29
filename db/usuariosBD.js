@@ -75,9 +75,9 @@ async function nuevoUsuario(datos) {
 }
 
 async function modificarUsuario(datos) {
-    var usuario = await buscarPorID(datos.id);
+    var usuario1 = await buscarPorID(datos.id);
     var error = 1;
-    if(usuario != undefined){
+    if(usuario1 != undefined){
         if(datos.password ==""){
             datos.password = user.password;
             datos.salt = user.salt
@@ -87,11 +87,19 @@ async function modificarUsuario(datos) {
            datos.password = hash;
            datos.salt =salt;
         }
-        var fotoRuta = './web/Usuarios/images/' + usuario.foto;
+        var fotoRuta = './web/Usuarios/images/' + usuario1.foto;
         await fs.unlink(fotoRuta);
-        var usuario = new Usuario(datos.id, datos);
+        console.log(datos);
+        usuario1.foto = datos.foto;
+        usuario1.nombre = datos.nombre;
+        usuario1.usuario = datos.usuario;
+        usuario1.password = datos.password;
+        usuario1.salt = datos.salt;
+
+        var usuario = new Usuario(usuario1.id, usuario1);
         if (usuario.bandera == 0) {
             try {
+            // console.log(usuario.obtenerUsuario);
                 await conexion.doc(usuario.id).set(usuario.obtenerUsuario);
                 console.log("Usuario actualizado correctamente");
                 error = 0;
