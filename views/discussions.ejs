@@ -21,15 +21,14 @@
 									<strong> TITLE: <%= post.title %> <br /> </strong>
 								</center>
 								CONTENT: <%= post.content %> <br />
-									RATING: <%= "⭐" .repeat(Math.min(5, Math.max(0, post.rating))) %> <br />
-									<!-- <form action="/foro/editarPost/<%= post._id %>" method="GET" style="display: inline;">
-										<button type="submit" class="editar-btn">Edit Post</button>
-									</form>		 -->
-									<form action="/eliminar-discusion/<%= post.id_po %>" method="POST">
-										<button type="submit" class="eliminar-btn">Eliminar</button>
-									  </form>														
-						</li>
-						<% }) %>
+								RATING: <%= "⭐" .repeat(Math.min(5, Math.max(0, post.rating))) %> <br />
+								<% if (isAdmin) { %>
+									<form action="/eliminarPost/<%= post._id %>" method="POST">
+										<button type="submit" class="eliminar-btn">Delete</button>
+									  </form>	
+								<% } %>	  								  
+								</li>
+								<% }) %>
 				</ul>
 			</div>
 		</main>
