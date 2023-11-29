@@ -136,7 +136,7 @@ async function login(datos){
             if(validar){
                 usuarioObjeto = new Usuario(doc.id,doc.data());
                 if(usuarioObjeto.bandera==0){
-                    user=usuarioObjeto.obtenerUsuario;
+                    user = usuarioObjeto.obtenerUsuario;
                 }
             }
             else 

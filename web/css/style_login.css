@@ -236,7 +236,7 @@ input {
 }
 
 .overlay {
-  background-image: url('../images/S3H.jpg');
+  background-image: url('../assets/fondlog.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

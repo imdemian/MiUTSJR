@@ -25,6 +25,7 @@ ruta.get("/login",(req,res)=>{
 
 ruta.post("/login",async(req,res)=>{
     var user = await login(req.body);
+
     if(user==undefined){
        res.redirect("/login");
     }else{
@@ -32,7 +33,7 @@ ruta.post("/login",async(req,res)=>{
           console.log("Administrador");
           //console.log(user);
           req.session.admin=req.body.usuario;
-          res.redirect("/inicio");
+          res.redirect("/inicio/true");
        }else{
           console.log("usuario");
           //console.log(user);
@@ -43,7 +44,14 @@ ruta.post("/login",async(req,res)=>{
     }
  });
 
-//Rutas de la nabvar
+ ruta.get("/inicio",async (req, res) => {
+    res.render("inicio/inicio"); 
+});
+
+ruta.get("/inicio/:isAdmin", (req, res) => {
+    req.session.isAdmin=req.params.isAdmin;
+    res.render("inicio/inicio"); 
+});
 
  ruta.get("/inicio", (req, res) => {
     res.render("inicio/inicio"); 
@@ -56,6 +64,7 @@ ruta.get("/perfil", async (req, res) => {
     res.render("inicio/perfil",{usuarios}); 
 });
  
+
  ruta.get("/logout",(req,res)=>{
     req.session=null;
     res.redirect("/login");
@@ -104,6 +113,5 @@ ruta.get("/borrarUsuario/:id", async (req, res) => {
 ruta.get("/foro", (req, res) => {
 	res.render("inicio/foro");
 });
-
 
 module.exports = ruta;
