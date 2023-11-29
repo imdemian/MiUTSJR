@@ -1,7 +1,7 @@
 var ruta = require("express").Router();
 var {subirArchivoU} = require("../middlewares/middlewares");
 var {autorizado} = require("../middlewares/password");
-var {mostrarUsuarios, nuevoUsuario, buscarPorID, modificarUsuario, borrarUsuario, login} = require("../db/usuariosBD");
+var {mostrarUsuarios, nuevoUsuario, buscarPorID, modificarUsuario, borrarUsuario, login,buscarPerfil} = require("../db/usuariosBD");
 const Usuario = require("../models/usuario");
 
 ruta.get("/", autorizado, async(req, res)=> {
@@ -31,11 +31,14 @@ ruta.post("/login",async(req,res)=>{
     }else{
        if(user.admin){
           console.log("Administrador");
+          //console.log(user);
           req.session.admin=req.body.usuario;
           res.redirect("/inicio/true");
        }else{
           console.log("usuario");
+          //console.log(user);
           req.session.usuario=req.body.nombre;
+          req.session.id=user.id
           res.redirect("/inicio");
        }
     }
@@ -50,6 +53,18 @@ ruta.get("/inicio/:isAdmin", (req, res) => {
     res.render("inicio/inicio"); 
 });
 
+ ruta.get("/inicio", (req, res) => {
+    res.render("inicio/inicio"); 
+});
+
+ruta.get("/perfil", async (req, res) => {
+    console.log("id ---------------");
+    console.log(req.session.id);
+    usuarios= await buscarPerfil(req.session.id)
+    res.render("inicio/perfil",{usuarios}); 
+});
+ 
+
  ruta.get("/logout",(req,res)=>{
     req.session=null;
     res.redirect("/login");
@@ -61,14 +76,19 @@ ruta.get("/editarUsuario/:id", async (req, res) => {
 } );
 
 ruta.post("/editarUsuario",subirArchivoU(), async (req, res) => {
+    //console.log(req.file);
    if(req.file!=null){
-    req.body.foto = req.filename;
+    //console.log("file name");
+    //console.log(req.filename);
+    req.body.foto = req.file.filename;
    }
    else{
     req.body.foto = req.body.fotoAnterior
    }
+   console.log(req.body.foto);
     var error = await modificarUsuario(req.body);
     res.redirect("/");
+    //res.end();
 });
 
 ruta.post("/editarUsuario", subirArchivoU(), async (req, res) => {

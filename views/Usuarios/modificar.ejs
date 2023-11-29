@@ -1,7 +1,7 @@
 <%- include("../templates/header")%>
 
 <div class="container">
-    <form action="/editarUsuario" method="post">
+    <form action="/editarUsuario" method="post" enctype="multipart/form-data">
         <div class="card">
             <div class="card-header">
                 <h1>Editar Usuario</h1>
@@ -11,12 +11,12 @@
                 <input class="form-control mb-3" type="hidden" name="fotoAnterior" id="fotoAnterior" value="<%= user.foto %>">
                 <input class="form-control mb-3" type="text"name="nombre" id="nombre" value="<%= user.nombre %>">
                 <input class="form-control mb-3" type="text"name="usuario" id="usuario" value="<%= user.usuario%>"> 
-                <input class="form-control mb-3" type="password"name="password" id="password" placeholder="Nuevo password o dejarlo en blanco para conservar el anterior">
+                <input class="form-control mb-3" type="password"name="password" id="password" placeholder="Nueva password">
+                <input class="form-control mb-3" type="hidden"name="foto2" id="foto2" value="%= user.foto %>">
+                <input class="form-control mb-3" type="file"name="foto" id="foto" placeholder="Selecciona tu foto">
             <div class="form-control mb-3">
-                <img src="web\Usuarios\images\suga.png user.foto %>" width="100px" alt="">
-                <div><%= user.foto %></div>
+    
             </div>
-            <input class="form-control mb-3" type="file" name="foto" id="foto" placeholder="Selecciona tu foto">
             </div> 
             <div class="card-footer">  
             <button class="btn btn-primary mb-3" type="submit">Editar Usuario</button>
@@ -27,3 +27,5 @@
 </div>
 
 <%- include("../templates/footer")%>
+
+
