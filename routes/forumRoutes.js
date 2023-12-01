@@ -55,4 +55,45 @@ router.post("/eliminarPost/:id",autorizado,async (req, res) => {
     }
 });
 
+router.get("/editarPost/:id", autorizado, async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const post = await firebaseDatabase.collection("posts").doc(postId).get();
+
+        if (!post.exists) {
+            return res.status(404).json({ error: "Post not found" });
+        }
+
+        // Renderiza la vista de edición de post con la información del post
+        res.render("/post/editarPost", { post: post.data() });
+    } catch (error) {
+        console.error("Error al obtener el post para editar:", error);
+        res.redirect("/error");
+    }
+});
+
+router.post("/editarPost/:id", autorizado, async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const { title, content, rating } = req.body;
+
+        // if (!title || !content || !rating) {
+        //     return res.redirect(`/editarPost/${postId}`);
+        // }
+
+        const updatedPost = {
+            title: title,
+            content: content,
+            rating: rating,
+        };
+
+        await firebaseDatabase.collection("posts").doc(postId).update(updatedPost);
+
+        res.redirect("/discussions");
+    } catch (error) {
+        console.error("Error al editar el post:", error);
+        res.redirect("/error");
+    }
+});
+
 module.exports = router;

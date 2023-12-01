@@ -59,7 +59,7 @@ async function nuevoUsuario(datos) {
     var {salt,hash} = generarPassword(datos.password);
     datos.password = hash;
     datos.salt = salt;
-    datos.admin = false;
+    // datos.admin = false;
     var usuario = new Usuario(null, datos);
     var error = 1;
     if(usuario.bandera == 0) {

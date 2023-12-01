@@ -20,7 +20,7 @@ function autorizado(req,res,siguiente){
     if(req.session.usuario || req.session.admin){
       siguiente();  
     }else{
-        res.redirect("/inicio");
+        res.redirect("/login");
     } 
 }
 
