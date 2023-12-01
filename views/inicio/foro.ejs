@@ -1,0 +1,36 @@
+<%- include("../templates/header")%>
+  <title>Foro de Discusión Utsjr</title>
+
+  <body>
+    <main>
+      <div id="create-discussion" class="fo">
+
+        <form action="/newPost" method="POST">
+          <h2 style="color: rgb(0, 0, 0);">Forum</h2>
+          <div class="image-container">
+            <!-- <img src="../web/assets/lobopregunta.png" width="150px" height="150px"> -->
+          </div>
+          <div class="form__group field">
+            <label for="name" class="form__label" id="title" name="title">Tittle</label>
+            <input type="text" class="form__field" id="title" name="title" placeholder="Título de la Discusión">
+            <br>
+          </div>
+          <div class="fgroup">
+            <label for="contenido" class="flabel" id="content" name="content">Content </label>
+            <textarea class="ffield" id="content" name="content" placeholder="Contenido de la Discusión"></textarea>
+          </div>
+          <div class="fgroup">
+            <label for="rating" class="flabel" id="rating" name="rating">Rating</label>
+            <input type="text" class="form__field" id="rating" name="rating" placeholder="Rating">
+          </div>
+          <br>
+          <center>
+            <button class="sub" type="submit">Create discussions</button>
+            <a href="/discussions">
+              <button type="button">Go to discussions</button>
+            </a>
+          </center>
+        </form>
+      </div>
+      <script src="script.js"></script>
+      <%- include("../templates/footer")%>

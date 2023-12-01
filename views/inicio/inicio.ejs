@@ -1,43 +1,59 @@
-<link href="/css/style.css" rel="stylesheet">
-<body id="top">
 
-    <!-- 
-      - #HEADER
-    -->
-  
-    <header class="header" data-header>
-      <div class="container">
-  
-        <a href="#">
-          <h1 class="logo">MI UTSJR</h1>
-        </a>
-  
-        <button class="nav-toggle-btn" aria-label="Toggle Menu" data-nav-toggle-btn>
-          <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
-          <ion-icon name="close-outline" class="close-icon"></ion-icon>
-        </button>
-  
-        <nav class="navbar container">
-          <ul class="navbar-list">
-  
-            <li>
-              <a href="#home" class="navbar-link" data-nav-link>Inicio</a>
-            </li>
-  
-            <li>
-              <a href="#about" class="navbar-link" data-nav-link>Servicios</a>
-            </li>
-  
-            <li>
-              <a href="#portfolio" class="navbar-link" data-nav-link>Perfil</a>
-            </li>
-  
-          </ul>
-        </nav>
-  
-      </div>
-    </header>
-  
+<link href="/css/style.css" rel="stylesheet">
+
+<body id="top">
+  <header class="header" data-header>
+
+    <div class="container">
+
+      <h1 class="logo">MI UTSJR</h1>
+
+      <button class="nav-toggle-btn" aria-label="Toggle Menu" data-nav-toggle-btn>
+        <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
+        <ion-icon name="close-outline" class="close-icon"></ion-icon>
+      </button>
+
+      <nav class="navbar container">
+        <ul class="navbar-list">
+
+          <li>
+            <a href="#home" class="navbar-link" data-nav-link>Home</a>
+          </li>
+
+          <li>
+            <a href="#about" class="navbar-link" data-nav-link>Services</a>
+          </li>
+
+          <li>
+            <a href="#portfolio" class="navbar-link" data-nav-link>Perfil</a>
+          </li>
+
+          <li>
+            <a href="/foro" class="navbar-link" data-nav-link>Forum</a>
+          </li>
+
+          <li>
+            <a href="/logout" class="navbar-link" data-nav-link>Log out</a>
+          </li>
+
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section class="hero" id="home">
+        <div class="container">
+
+          <div class="hero-banner">
+            <img src="\assets\ut.jpeg" class="hero-banner img" alt="ut">
+
+            <!--<div class="elem elem-1">
+
+<%- include("../templates/menu")%>
+
     <main>
       <article>
   
@@ -56,18 +72,18 @@
   
                 <p class="elem-text">Aniversario</p>
               </div> -->
-  
-              <div class="elem elem-2">
-                <p class="elem-title">25</p>
-  
-                <p class="elem-text">Aniversario</p>
-              </div>
-  
-              <div class="elem elem-3">
-                <ion-icon name="trophy"></ion-icon>
-              </div>
-  
-             <!-- <img src="./assets/images/rotate-img.png" width="169" height="172" alt="I'm developer from New York"
+
+            <div class="elem elem-2">
+              <p class="elem-title">25</p>
+
+              <p class="elem-text">Aniversario</p>
+            </div>
+
+            <div class="elem elem-3">
+              <ion-icon name="trophy"></ion-icon>
+            </div>
+
+            <!-- <img src="./assets/images/rotate-img.png" width="169" height="172" alt="I'm developer from New York"
                 class="rotate-img">-->
   
             </div>
@@ -75,18 +91,18 @@
             <div class="hero-content">
   
               <h2 class="hero-title">
-                <span>¡Hola!</span>
+                <span>¡Hi!</span>
                 <strong>Lobo</strong>
               </h2>
   
               <p class="hero-text">
-                Adipisicing elit. Neque nulla voluptatum eos repellat deserunt nesciunt tempore porro totam.
+               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus officia, aliquam unde expedita iusto ducimus beatae culpa, dolore debitis dignissimos assumenda? Ad fugit placeat impedit earum iusto explicabo, hic ea.
               </p>
   
               <div class="btn-group">
-                <a href="http://200.188.14.58/moodle/login/index.php" class="btn btn-primary blue">Ir a aula virtual</a>
+                <a href="http://200.188.14.58/moodle/login/index.php" class="btn btn-primary blue">Go to Moodle</a>
   
-                <a href="#about" class="btn">De Interés</a>
+                <a href="#about" class="btn">Classroom</a>
               </div>
   
             </div>

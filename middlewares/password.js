@@ -16,23 +16,23 @@ function  validarPassword(password, hash, salt){
 }
 
 function autorizado(req,res,siguiente){
-    console.log("Usuario Autorizado");
+    // console.log("Usuario Autorizado");
     if(req.session.usuario || req.session.admin){
       siguiente();  
     }else{
-        res.redirect("/login");
+        res.redirect("/inicio");
     } 
 }
 
 function admin(req,res,siguiente){
-    console.log("Administrador autorizado");
+    // console.log("Administrador autorizado");
     if(req.session.admin){
      siguiente();   
     }else{
         if(req.session.usuario){
             res.redirect("/");
         }else{
-            res.redirect("/login");
+            res.redirect("/inicio");
         }
     }
        

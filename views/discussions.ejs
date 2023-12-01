@@ -1,0 +1,36 @@
+<%- include("./templates/header.ejs")%>
+
+	<head>
+		<title>Discusiones Utsjr</title>
+		<link rel="stylesheet" type="text/css" href="../web/css/stylesforum.css" />
+	</head>
+
+	<body>
+		<br />
+		<br />
+		<br />
+		<br />
+		<main>
+			<div id="discussions">
+				<h2 style="color: rgb(0, 0, 0)">Discussions</h2>
+				<ul id="discussion-list">
+					<% posts.map((post)=> { %>
+						<li>
+							<%= post._id %> <br />
+								<center>
+									<strong> TITLE: <%= post.title %> <br /> </strong>
+								</center>
+								CONTENT: <%= post.content %> <br />
+								RATING: <%= "⭐" .repeat(Math.min(5, Math.max(0, post.rating))) %> <br />
+								<% if (isAdmin) { %>
+									<form action="/eliminarPost/<%= post._id %>" method="POST">
+										<button type="submit" class="eliminar-btn">Delete</button>
+									  </form>	
+								<% } %>	  								  
+								</li>
+								<% }) %>
+				</ul>
+			</div>
+		</main>
+	</body>
+	<%- include("./templates/footer")%>

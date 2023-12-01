@@ -20,6 +20,25 @@ async function mostrarUsuarios() {
     return users;
 }
 
+
+async function buscarPerfil(id) {
+    var usuarios;
+    try {
+        var usuarioBD = await conexion.doc(id).get();
+        
+        var usuarioObjeto = new Usuario(usuarioBD.id,usuarioBD.data());
+            if (usuarioObjeto.bandera==0) {
+
+            usuarios = usuarioObjeto.obtenerUsuario;
+
+        }
+    } catch (err) {
+        console.log("Error al buscar el usuario " + err);
+        usuarios = null;
+    }
+    return usuarios;
+}
+
 async function buscarPorID(id) {
     var user;
     try {
@@ -56,9 +75,9 @@ async function nuevoUsuario(datos) {
 }
 
 async function modificarUsuario(datos) {
-    var usuario = await buscarPorID(datos.id);
+    var usuario1 = await buscarPorID(datos.id);
     var error = 1;
-    if(usuario != undefined){
+    if(usuario1 != undefined){
         if(datos.password ==""){
             datos.password = user.password;
             datos.salt = user.salt
@@ -68,16 +87,24 @@ async function modificarUsuario(datos) {
            datos.password = hash;
            datos.salt =salt;
         }
-        var fotoRuta = './web/Usuarios/images/' + usuario.foto;
+        var fotoRuta = './web/Usuarios/images/' + usuario1.foto;
         await fs.unlink(fotoRuta);
-        var usuario = new Usuario(datos.id, datos);
+        console.log(datos);
+        usuario1.foto = datos.foto;
+        usuario1.nombre = datos.nombre;
+        usuario1.usuario = datos.usuario;
+        usuario1.password = datos.password;
+        usuario1.salt = datos.salt;
+
+        var usuario = new Usuario(usuario1.id, usuario1);
         if (usuario.bandera == 0) {
             try {
+            // console.log(usuario.obtenerUsuario);
                 await conexion.doc(usuario.id).set(usuario.obtenerUsuario);
                 console.log("Usuario actualizado correctamente");
                 error = 0;
             } catch (err) {
-                console.log("Error al modificar el usaurio " + err);
+                console.log("Error al modificar el usuario " + err);
             }
         }
         else {
@@ -117,7 +144,7 @@ async function login(datos){
             if(validar){
                 usuarioObjeto = new Usuario(doc.id,doc.data());
                 if(usuarioObjeto.bandera==0){
-                    user=usuarioObjeto.obtenerUsuario;
+                    user = usuarioObjeto.obtenerUsuario;
                 }
             }
             else 
@@ -137,5 +164,6 @@ module.exports={
     nuevoUsuario,
     modificarUsuario,
     borrarUsuario,
-    login
+    login,
+    buscarPerfil
 }

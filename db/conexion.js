@@ -7,9 +7,9 @@ admin.initializeApp({
 
 var db = admin.firestore();
 var conexion = db.collection("miUTSJR");
-var conexionProductos = db.collection("BDproducto");
+var conexionForo = db.collection("forum");
 
 module.exports= {
     conexion, 
-    conexionProductos
+    conexionForo
 };
