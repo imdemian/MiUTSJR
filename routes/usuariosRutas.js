@@ -13,11 +13,21 @@ ruta.get("/nuevoUsuario", (req, res) => {
     res.render("Usuarios/nuevo");
 })
 
-ruta.post("/nuevoUsuario",subirArchivoU(), async (req, res) => {
-    req.body.foto = req.file.filename;
+ruta.post("/nuevoUsuario", subirArchivoU(), async (req, res) => {
+    if (req.body.admin === undefined) {
+        req.body.admin = false; 
+    }
+    if (req.file) {
+        req.body.foto = req.file.filename;
+    } else {
+        // Asignar un valor predeterminado en caso de que no se proporcione una imagen
+        req.body.foto = "perfil.jpg"; // Reemplaza con el nombre que desees
+    }
+
     var error = await nuevoUsuario(req.body);
-     res.redirect("/");
+    res.redirect("/");
 });
+
 
 ruta.get("/login",(req,res)=>{
     res.render("Usuarios/login")
@@ -33,7 +43,7 @@ ruta.post("/login",async(req,res)=>{
           console.log("Administrador");
           //console.log(user);
           req.session.admin=req.body.usuario;
-          res.redirect("/inicio");
+          res.redirect("/inicio/true");
        }else{
           console.log("usuario");
           //console.log(user);
@@ -61,8 +71,7 @@ ruta.get("/perfil", async (req, res) => {
     console.log("id ---------------");
     console.log(req.session.id);
     usuarios= await buscarPerfil(req.session.id)
-    foto = req.session.foto
-    res.render("inicio/perfil",{usuarios,foto}); 
+    res.render("inicio/perfil",{usuarios}); 
 });
  
 
@@ -71,7 +80,7 @@ ruta.get("/perfil", async (req, res) => {
     res.redirect("/login");
  });
 
-ruta.get("/editarUsuario/:id", async (req, res) => {
+ ruta.get("/editarUsuario/:id", async (req, res) => {
     var user = await buscarPorID(req.params.id);
     res.render("Usuarios/modificar", {user});
 } );
@@ -88,11 +97,11 @@ ruta.post("/editarUsuario",subirArchivoU(), async (req, res) => {
    }
    console.log(req.body.foto);
     var error = await modificarUsuario(req.body);
-    res.redirect("/");
+    res.redirect("/login");
     //res.end();
 });
 
-ruta.post("/editarUsuario", subirArchivoU(), async (req, res) => {
+ruta.post("/editarUsuario",autorizado, subirArchivoU(), async (req, res) => {
     if (req.file != null) {
         req.body.foto = req.filename;
     } else {
@@ -101,6 +110,19 @@ ruta.post("/editarUsuario", subirArchivoU(), async (req, res) => {
     var error = await modificarUsuario(req.body);
     res.redirect("/");
 });
+
+ruta.get("/perfil",autorizado, async (req, res) => {
+    console.log("id ---------------");
+    console.log(req.session.id);
+    usuarios= await buscarPerfil(req.session.id)
+    foto = req.session.foto
+    res.render("inicio/perfil",{usuarios,foto}); 
+});
+
+ruta.get("/logout",(req,res)=>{
+    req.session=null;
+    res.redirect("/login");
+ });
 
 ruta.get("/borrarUsuario/:id", async (req, res) => {
     try {

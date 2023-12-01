@@ -1,0 +1,30 @@
+<%- include("../templates/header.ejs")%>
+	<head>
+		<title>Discusiones Utsjr</title>
+		<link rel="stylesheet" type="text/css" href="../web/css/stylesforum.css" />
+	</head>
+
+	<body>
+		<br />
+		<br />
+		<br />
+		<br />
+		<main>
+			<div id="discussions">
+				<h2 style="color: rgb(0, 0, 0)">Discussions</h2>
+                <form action="/editarPost/<%= post._id %>" method="POST">
+                    <label for="title">Título:</label>
+                    <input type="text" id="title" name="title" value="<%= post.title %>">
+            
+                    <label for="content">Contenido:</label>
+                    <textarea id="content" name="content"><%= post.content %></textarea>
+            
+                    <label for="rating">Rating:</label>
+                    <input type="number" id="rating" name="rating" value="<%= post.rating %>">
+
+                    <button type="submit">Guardar Cambios</button>
+                </form>
+			</div>
+		</main>
+	</body>
+	<%- include("../templates/footer")%>
