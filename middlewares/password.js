@@ -8,7 +8,7 @@ return {
     hash
 }
 }
-
+// oaa
 function  validarPassword(password, hash, salt){
   var hashValidar = crypto.scryptSync(password,salt,100000,64,'sha512').toString("hex");
   return hashValidar ===  hash;
