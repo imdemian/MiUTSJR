@@ -6,7 +6,7 @@ const Usuario = require("../models/usuario");
 
 ruta.get("/", autorizado, async(req, res)=> {
     var usuarios = await mostrarUsuarios();
-    res.render("usuarios/login", {usuarios});
+    res.render("Usuarios/login", {usuarios});
 });
 
 ruta.get("/nuevoUsuario", (req, res) => {
@@ -20,7 +20,7 @@ ruta.post("/nuevoUsuario",subirArchivoU(), async (req, res) => {
 });
 
 ruta.get("/login",(req,res)=>{
-    res.render("usuarios/login")
+    res.render("Usuarios/login")
 });
 
 ruta.post("/login",async(req,res)=>{
@@ -73,7 +73,7 @@ ruta.get("/perfil", async (req, res) => {
 
 ruta.get("/editarUsuario/:id", async (req, res) => {
     var user = await buscarPorID(req.params.id);
-    res.render("usuarios/modificar", {user});
+    res.render("Usuarios/modificar", {user});
 } );
 
 ruta.post("/editarUsuario",subirArchivoU(), async (req, res) => {
