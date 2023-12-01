@@ -79,8 +79,8 @@ async function modificarUsuario(datos) {
     var error = 1;
     if(usuario1 != undefined){
         if(datos.password ==""){
-            datos.password = user.password;
-            datos.salt = user.salt
+            datos.password = usuario1.password;
+            datos.salt = usuario1.salt;
         }
         else{
            var {salt, hash} = generarPassword(datos.password);
@@ -93,6 +93,9 @@ async function modificarUsuario(datos) {
         usuario1.foto = datos.foto;
         usuario1.nombre = datos.nombre;
         usuario1.usuario = datos.usuario;
+        if(usuario1.password == ""){
+           console.log("No actualizo contraseña");
+        }
         usuario1.password = datos.password;
         usuario1.salt = datos.salt;
 

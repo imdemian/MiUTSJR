@@ -71,8 +71,11 @@ ruta.get("/perfil", async (req, res) => {
     console.log("id ---------------");
     console.log(req.session.id);
     usuarios= await buscarPerfil(req.session.id)
-    res.render("inicio/perfil",{usuarios}); 
+    foto = req.session.foto
+    res.render("inicio/perfil",{usuarios,foto});
 });
+
+
  
 
  ruta.get("/logout",(req,res)=>{
@@ -127,7 +130,7 @@ ruta.get("/logout",(req,res)=>{
 ruta.get("/borrarUsuario/:id", async (req, res) => {
     try {
         await borrarUsuario(req.params.id);
-        res.redirect("/inicio");
+        res.redirect("/");
     } catch (err) {
         console.log("Error al borrar el usuario " + err);
     }
