@@ -44,10 +44,12 @@ ruta.get("/api/borrarUsuario/:id",async(req,res)=>{
 
  ruta.post("/api/editarUsuario", subirArchivoU(), async (req, res) => {
     if (req.file != null) {
-        req.body.foto = req.filename;
+        req.body.foto = req.file.filename;
     } else {
         req.body.foto = req.body.fotoAnterior;
+        
     }
+    console.log(req.body.foto);
     var error = await modificarUsuario(req.body);
     if(error==0){
         res.status(200).json("Usuario actualizado correctamente");

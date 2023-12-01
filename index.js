@@ -6,6 +6,7 @@ var session = require("cookie-session");
 var forumRoutes = require("./routes/forumRoutes");
 var usuariosRutas = require("./routes/usuariosRutas");
 var usuariosRutasApi = require("./routes/usuariosRutasApi");
+var forumRoutesApi= require("./routes/forumRoutesApi");
 
 var app = express();
 app.set("view engine", "ejs");
@@ -24,6 +25,7 @@ app.use(express.static('public', { 'extensions': ['css'] }));
 app.use("/", usuariosRutas);
 app.use("/",usuariosRutasApi);
 app.use("/",forumRoutes);
+app.use("/",forumRoutesApi);
 
 
 var port= process.env.PORT || 3001;

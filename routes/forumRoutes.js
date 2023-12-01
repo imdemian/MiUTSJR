@@ -55,6 +55,8 @@ router.post("/eliminarPost/:id",autorizado,async (req, res) => {
     }
 });
 
+
+
 router.get("/editarPost/:id", autorizado, async (req, res) => {
     try {
         const postId = req.params.id;
@@ -65,21 +67,22 @@ router.get("/editarPost/:id", autorizado, async (req, res) => {
         }
 
         // Renderiza la vista de edición de post con la información del post
-        res.render("/post/editarPost", { post: post.data() });
+        res.render("Post/editarPost", { post: post.data() });
     } catch (error) {
         console.error("Error al obtener el post para editar:", error);
         res.redirect("/error");
     }
 });
 
-router.post("/editarPost/:id", autorizado, async (req, res) => {
+router.post("/editarPost", autorizado, async (req, res) => {
     try {
         const postId = req.params.id;
+        console.log(req.params.id);
         const { title, content, rating } = req.body;
 
-        // if (!title || !content || !rating) {
-        //     return res.redirect(`/editarPost/${postId}`);
-        // }
+         if (!title || !content || !rating) {
+            return res.redirect(`/editarPost/${postId}`);
+         }
 
         const updatedPost = {
             title: title,
@@ -95,5 +98,6 @@ router.post("/editarPost/:id", autorizado, async (req, res) => {
         res.redirect("/error");
     }
 });
+
 
 module.exports = router;
