@@ -13,11 +13,21 @@ ruta.get("/nuevoUsuario", (req, res) => {
     res.render("Usuarios/nuevo");
 })
 
-ruta.post("/nuevoUsuario",subirArchivoU(), async (req, res) => {
-    req.body.foto = req.file.filename;
+ruta.post("/nuevoUsuario", subirArchivoU(), async (req, res) => {
+    if (req.body.admin === undefined) {
+        req.body.admin = false; 
+    }
+    if (req.file) {
+        req.body.foto = req.file.filename;
+    } else {
+        // Asignar un valor predeterminado en caso de que no se proporcione una imagen
+        req.body.foto = "perfil.jpg"; // Reemplaza con el nombre que desees
+    }
+
     var error = await nuevoUsuario(req.body);
-     res.redirect("/");
+    res.redirect("/");
 });
+
 
 ruta.get("/login",(req,res)=>{
     res.render("Usuarios/login")
