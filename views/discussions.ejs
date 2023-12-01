@@ -23,7 +23,7 @@
 								CONTENT: <%= post.content %> <br />
 								RATING: <%= "⭐" .repeat(Math.min(5, Math.max(0, post.rating))) %> <br />
 								<% if (isAdmin) { %>
-									<!-- <a href="/editarPost/<%= post.id %>">Editar</a> -->
+									<a href="/editarPost/<%= post.id %>">Editar</a>
 									<form action="/eliminarPost/<%= post._id %>" method="POST">
 										<button type="submit" class="eliminar-btn">Delete</button>
 									  </form>	
